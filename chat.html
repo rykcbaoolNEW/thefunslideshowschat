@@ -27,12 +27,13 @@
             appId: "1:432096531830:web:28e47746c2300bafb8d657"
         };
 
-        // Initialize Firebase
+             // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database(); // Ensure db is initialized here
 
         const username = localStorage.getItem('username');
 
+        // Define the sendMessage function in the global scope
         function sendMessage() {
             const message = document.getElementById('message').value;
             if (message) {
@@ -45,6 +46,7 @@
             }
         }
 
+        // Listen for new messages
         db.ref('messages').on('child_added', function(snapshot) {
             const msg = snapshot.val();
             const chatBox = document.getElementById('chat-box');
