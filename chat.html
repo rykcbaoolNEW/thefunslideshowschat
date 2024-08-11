@@ -17,19 +17,19 @@
     
     <script>
         // Your web app's Firebase configuration
-          const firebaseConfig = {
-                apiKey: "AIzaSyCxp10smEbgwbOFA4rfA2wXV0J0H9VyLlk",
-    						authDomain: "slideshowschat.firebaseapp.com",
-    						projectId: "slideshowschat",
-   							storageBucket: "slideshowschat.appspot.com",
-     						messagingSenderId: "432096531830",
-    						appId: "1:432096531830:web:28e47746c2300bafb8d657",
-    						measurementId: "G-EC28WRKBXL"
-  				};
+        const firebaseConfig = {
+            apiKey: "AIzaSyCxp10smEbgwbOFA4rfA2wXV0J0H9VyLlk",
+            authDomain: "slideshowschat.firebaseapp.com",
+            databaseURL: "https://slideshowschat-default-rtdb.firebaseio.com",
+            projectId: "slideshowschat",
+            storageBucket: "slideshowschat.appspot.com,
+            messagingSenderId: "432096531830",
+            appId: "1:432096531830:web:28e47746c2300bafb8d657"
+        };
 
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+        const db = firebase.database(); // Ensure db is initialized here
 
         const username = localStorage.getItem('username');
 
