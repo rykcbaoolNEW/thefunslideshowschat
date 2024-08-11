@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Enter your username</h1>
+    <input type="text" id="username" placeholder="Username">
+    <button onclick="login()">Enter</button>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            if (username) {
+                localStorage.setItem('username', username);
+                window.location.href = 'chat.html';
+            }
+        }
+    </script>
+</body>
+</html>
