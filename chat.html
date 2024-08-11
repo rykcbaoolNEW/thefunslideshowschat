@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="message" placeholder="Type your message">
+    <button onclick="sendMessage()">Send</button>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+    
+    <script>
+        // Your web app's Firebase configuration
+          const firebaseConfig = {
+                apiKey: "AIzaSyCxp10smEbgwbOFA4rfA2wXV0J0H9VyLlk",
+    						authDomain: "slideshowschat.firebaseapp.com",
+    						projectId: "slideshowschat",
+   							storageBucket: "slideshowschat.appspot.com",
+     						messagingSenderId: "432096531830",
+    						appId: "1:432096531830:web:28e47746c2300bafb8d657",
+    						measurementId: "G-EC28WRKBXL"
+  				};
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const username = localStorage.getItem('username');
+
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (message) {
+                db.ref('messages').push({
+                    username: username,
+                    message: message,
+                    timestamp: Date.now()
+                });
+                document.getElementById('message').value = '';
+            }
+        }
+
+        db.ref('messages').on('child_added', function(snapshot) {
+            const msg = snapshot.val();
+            const chatBox = document.getElementById('chat-box');
+            const p = document.createElement('p');
+            p.innerText = `${msg.username}: ${msg.message}`;
+            chatBox.appendChild(p);
+        });
+    </script>
+</body>
+</html>
